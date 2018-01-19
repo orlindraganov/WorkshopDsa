@@ -7,18 +7,16 @@ namespace MessageInABottle
 {
     internal class Message
     {
-        private static Dictionary<string, char> dict;
-
         private static void Main(string[] args)
         {
-            var message = Console.ReadLine();
+            var encodedMessage = Console.ReadLine();
             var cypher = Console.ReadLine();
 
-            dict = ConvertCypher(cypher);
+            var dict = ConvertCypher(cypher);
 
             var messages = new List<string>();
 
-            DecodeMessages(message, messages);
+            DecodeMessages(encodedMessage, messages, dict);
 
             Console.WriteLine(messages.Count);
 
@@ -46,17 +44,20 @@ namespace MessageInABottle
             return dict;
         }
 
-        private static void DecodeMessages(string input, IList<string> output, string preceding = "")
+        private static void DecodeMessages(string input, IList<string> output, IDictionary<string, char> dict, string preceding = "")
         {
             if (input == string.Empty)
             {
+                output.Add(preceding);
                 return;
             }
 
-            for (int i = 1; i <= input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                var currentSubstr = input.Substring(0, i);
-                var nextSubstr = input.Substring(i);
+                var splitIndex = i + 1;
+
+                var currentSubstr = input.Substring(0, splitIndex);
+                var nextSubstr = input.Substring(splitIndex);
 
                 if (!dict.ContainsKey(currentSubstr))
                 {
@@ -64,14 +65,8 @@ namespace MessageInABottle
                 }
 
                 var letter = dict[currentSubstr];
-                if (nextSubstr != string.Empty)
-                {
-                    DecodeMessages(nextSubstr, output, string.Concat(preceding, letter));
-                }
-                else
-                {
-                    output.Add(string.Concat(preceding, letter));
-                }
+
+                DecodeMessages(nextSubstr, output, dict, string.Concat(preceding, letter));
             }
         }
     }
