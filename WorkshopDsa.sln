@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.LargestAreaInMatrix", "La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.Slogan", "Slogan\5.Slogan.csproj", "{B74376E0-9F81-4C93-8EF6-63F2A5610282}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.Actions", "Actions\6.Actions.csproj", "{AFC13B8F-87C6-4EA8-AE27-ABA18F981914}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7.PlayerRanking", "PlayerRanking\7.PlayerRanking.csproj", "{18283CE1-9807-4C6D-B551-67164801519E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{B74376E0-9F81-4C93-8EF6-63F2A5610282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74376E0-9F81-4C93-8EF6-63F2A5610282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74376E0-9F81-4C93-8EF6-63F2A5610282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC13B8F-87C6-4EA8-AE27-ABA18F981914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC13B8F-87C6-4EA8-AE27-ABA18F981914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC13B8F-87C6-4EA8-AE27-ABA18F981914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC13B8F-87C6-4EA8-AE27-ABA18F981914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18283CE1-9807-4C6D-B551-67164801519E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18283CE1-9807-4C6D-B551-67164801519E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18283CE1-9807-4C6D-B551-67164801519E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18283CE1-9807-4C6D-B551-67164801519E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,9 @@
 ﻿    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices;
 
-    namespace LargestAreaInMatrix
+namespace LargestAreaInMatrix
     {
         class LargestArea
         {
@@ -73,7 +74,8 @@
                 this.GetNeighbours(matrix, visited);
 
                 var count = 1;
-                return 1 + this.Neighbours.Sum(n => n.RecursiveBfs(matrix, visited));
+                count += this.Neighbours.Sum(n => n.RecursiveBfs(matrix, visited));
+                return count;
             }
 
             public int IterativeBfs(int[,] matrix, bool[,] visited)

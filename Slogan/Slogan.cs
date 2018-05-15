@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Wintellect.PowerCollections;
 
 namespace Slogan
 {
@@ -13,65 +12,58 @@ namespace Slogan
         private static void Main()
         {
             var numberOfMessages = int.Parse(Console.ReadLine());
-            var allMessages = new BigList<string>();
+
+            var output = new List<string>();
 
             for (int i = 0; i < numberOfMessages; i++)
             {
-                var words = Console.ReadLine();
+                var wordsStr = Console.ReadLine();
                 var message = Console.ReadLine();
-                var currMessages = new BigList<string>();
-                
-                CheckSlogan(message, words, currMessages);
 
-                if (currMessages.Count > 0)
-                {
-                    allMessages.AddRange(currMessages.OrderBy(x => x));
-                }
-                else
-                {
-                    allMessages.Add(NotValid);
-                }
+                var separator = new[] { ' ' };
+                var words = wordsStr.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
             }
 
             var sb = new StringBuilder();
-            foreach (var message in allMessages)
+            foreach (var msg in output)
             {
-                sb.AppendLine(message);
+                sb.AppendLine(msg);
             }
+
             Console.WriteLine(sb.ToString());
         }
 
-        private static void CheckSlogan(string message, string wordsStr, ICollection<string> output)
+        private static bool DecodeMessage(string message, IEnumerable<string> words, ICollection<string> output)
         {
-            if (message == string.Empty)
-            {
-                return;
-            }
-            var separator = new[] { ' ' };
-            var words = wordsStr.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-            CheckSlogan(message, words, new BigList<string>(), output);
+            var preceding = new List<string>();
+            return DecodeMessage(message, words, output, preceding);
         }
 
-        private static void CheckSlogan(string message, IEnumerable<string> words, ICollection<string> preceding, ICollection<string> output)
+        private static bool DecodeMessage(string message, IEnumerable<string> words, ICollection<string> output, ICollection<string> preceding)
         {
             if (message == string.Empty)
             {
-                output.Add(string.Join(" ", preceding));
-                return;
+                return true;
             }
 
             var isMessageValid = false;
+
             foreach (var word in words)
             {
-                if (message.StartsWith(word))
+                if (!message.StartsWith(word))
                 {
-                    isMessageValid = true;
-                    preceding.Add(word);
+                    continue;
+                }
 
-                    var rest = message.Substring(word.Length);
+                isMessageValid = true;
+                preceding.Add(word);
 
-                    CheckSlogan(rest, words, preceding, output);
+                var next = message.Substring(word.Length);
+
+                if (DecodeMessage(next, words, output, preceding))
+                {
+                    output.Add(word);
+                    return true;
                 }
             }
 
@@ -79,6 +71,9 @@ namespace Slogan
             {
                 output.Add(NotValid);
             }
+
+            return false;
         }
+
     }
 }
